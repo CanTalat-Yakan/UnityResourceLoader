@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace UnityEssentials
 {
-    public static class PrefabSpawnerEditor
+    public static class ResourceLoaderEditor
     {
-        public static void Instantiate(string prefabName, string instantiatedName = null)
+        public static void InstantiatePrefab(string prefabName, string instantiatedName = null)
         {
             if (string.IsNullOrWhiteSpace(prefabName))
             {

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public static class PrefabSpawner
+public static class ResourceLoader
 {
-    public static GameObject Instantiate(string prefabName, string instantiatedName, Transform parent = null)
+    public static GameObject InstantiatePrefab(string prefabName, string instantiatedName, Transform parent = null)
     {
         if (string.IsNullOrWhiteSpace(prefabName))
         {

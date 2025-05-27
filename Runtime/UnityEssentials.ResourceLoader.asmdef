@@ -1,5 +1,5 @@
 {
-    "name": "UnityEssentials.PrefabSpawner.Editor",
+    "name": "UnityEssentials.ResourceLoader",
     "rootNamespace": "UnityEssentials",
     "references": [],
     "includePlatforms": [],
