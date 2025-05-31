@@ -20,7 +20,7 @@ namespace UnityEssentials
                 Debug.LogError($"{prefabName} prefab not found in project.");
                 return null;
             }
-            
+
             var path = AssetDatabase.GUIDToAssetPath(guids[0]);
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
             if (prefab == null)
@@ -32,8 +32,12 @@ namespace UnityEssentials
             var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
             if (Selection.activeGameObject is GameObject parent)
                 GameObjectUtility.SetParentAndAlign(instance, parent);
-            if(!string.IsNullOrEmpty(instantiatedName))
+            if (!string.IsNullOrEmpty(instantiatedName))
                 instance.name = instantiatedName;
+
+            PrefabUtility.UnpackPrefabInstance(instance,
+                PrefabUnpackMode.Completely,
+                InteractionMode.AutomatedAction);
 
             Undo.RegisterCreatedObjectUndo(instance, "Spawn " + instance.name);
             Selection.activeObject = instance;
