@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UnityEssentials
 {
     public static class ResourceLoader
     {
+        private static readonly Dictionary<string, Object> _resourceCache = new();
         public static T LoadResource<T>(string resourcePath) where T : Object
         {
             if (string.IsNullOrWhiteSpace(resourcePath))
@@ -12,10 +14,21 @@ namespace UnityEssentials
                 return null;
             }
 
+            if (_resourceCache.TryGetValue(resourcePath, out var cachedObject))
+            {
+                if (cachedObject is T typedObject)
+                    return typedObject;
+                Debug.LogWarning($"ResourceLoader: Cached resource at '{resourcePath}' is not of type {typeof(T).Name}.");
+            }
+
             T resource = Resources.Load<T>(resourcePath);
             if (resource == null)
+            {
                 Debug.LogError($"ResourceLoader: Could not find resource '{resourcePath}' in any Resources folder.");
+                return null;
+            }
 
+            _resourceCache[resourcePath] = resource;
             return resource;
         }
 
@@ -23,7 +36,7 @@ namespace UnityEssentials
         {
             if (string.IsNullOrWhiteSpace(prefabName))
             {
-                Debug.LogError("PrefabSpawner: prefabName is null or empty.");
+                Debug.LogWarning("PrefabSpawner: prefabName is null or empty.");
                 return null;
             }
 
