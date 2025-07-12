@@ -6,7 +6,7 @@ namespace UnityEssentials
     public static class ResourceLoader
     {
         private static readonly Dictionary<string, Object> _resourceCache = new();
-        public static T LoadResource<T>(string resourcePath) where T : Object
+        public static T LoadResource<T>(string resourcePath, bool cacheResource = true) where T : Object
         {
             if (string.IsNullOrWhiteSpace(resourcePath))
             {
@@ -28,7 +28,9 @@ namespace UnityEssentials
                 return null;
             }
 
-            _resourceCache[resourcePath] = resource;
+            if (cacheResource)
+                _resourceCache[resourcePath] = resource;
+
             return resource;
         }
 
@@ -53,5 +55,8 @@ namespace UnityEssentials
 
             return instance;
         }
+
+        public static void ClearCache() =>
+            _resourceCache.Clear();
     }
 }
