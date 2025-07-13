@@ -10,7 +10,7 @@ namespace UnityEssentials
         {
             if (string.IsNullOrWhiteSpace(resourcePath))
             {
-                Debug.LogError("ResourceLoader: resourcePath is null or empty.");
+                Debug.LogWarning("ResourceLoader: resourcePath is null or empty.");
                 return null;
             }
 
