@@ -21,7 +21,7 @@ namespace UnityEssentials
                 Debug.LogWarning($"ResourceLoader: Cached resource at '{resourcePath}' is not of type {typeof(T).Name}.");
             }
 
-            T resource = Resources.Load<T>(resourcePath);
+            var resource = Resources.Load<T>(resourcePath);
             if (resource == null)
             {
                 Debug.LogError($"ResourceLoader: Could not find resource '{resourcePath}' in any Resources folder.");
@@ -42,7 +42,7 @@ namespace UnityEssentials
                 return null;
             }
 
-            GameObject prefab = Resources.Load<GameObject>(prefabName);
+            var prefab = Resources.Load<GameObject>(prefabName);
             if (prefab == null)
             {
                 Debug.LogError($"PrefabSpawner: Could not find prefab '{prefabName}' in any Resources folder.");
