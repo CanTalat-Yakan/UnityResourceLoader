@@ -24,7 +24,7 @@ namespace UnityEssentials
             var resource = Resources.Load<T>(resourcePath);
             if (resource == null)
             {
-                Debug.LogError($"ResourceLoader: Could not find resource '{resourcePath}' in any Resources folder.");
+                Debug.LogWarning($"ResourceLoader: Could not find resource '{resourcePath}' in any Resources folder.");
                 return null;
             }
 
@@ -45,7 +45,7 @@ namespace UnityEssentials
             var prefab = Resources.Load<GameObject>(prefabName);
             if (prefab == null)
             {
-                Debug.LogError($"PrefabSpawner: Could not find prefab '{prefabName}' in any Resources folder.");
+                Debug.LogWarning($"PrefabSpawner: Could not find prefab '{prefabName}' in any Resources folder.");
                 return null;
             }
 
